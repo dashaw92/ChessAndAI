@@ -1,4 +1,4 @@
-package com.hbh7;
+package com.hbh7.pieces;
 
 import static com.hbh7.Util.*;
 

@@ -1,4 +1,4 @@
-package com.hbh7;
+package com.hbh7.pieces;
 
 public class PieceData {
 

@@ -1,5 +1,8 @@
 package com.hbh7;
 
+import com.hbh7.pieces.ChessPiece;
+import com.hbh7.pieces.PieceData;
+
 public class AI {
 
     private int difficulty;

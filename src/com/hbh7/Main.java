@@ -1,6 +1,15 @@
 package com.hbh7;
 
 import java.util.Scanner;
+
+import com.hbh7.pieces.Bishop;
+import com.hbh7.pieces.ChessPiece;
+import com.hbh7.pieces.King;
+import com.hbh7.pieces.Knight;
+import com.hbh7.pieces.Pawn;
+import com.hbh7.pieces.Queen;
+import com.hbh7.pieces.Rook;
+
 import static com.hbh7.Util.*;
 
 public class Main {

@@ -1,29 +1,28 @@
-package com.hbh7;
+package com.hbh7.pieces;
 
 import static com.hbh7.Util.*;
 
-public class Queen extends ChessPiece{
+public class Rook extends ChessPiece{
 
-    private String pieceType = "Queen";
+    private String pieceType = "Rook";
     private String owner;
 
-    public Queen(String owner, String position) {
-        super("Queen", owner, position);
+    public Rook(String owner, String position) {
+        super("Rook", owner, position);
         this.owner = owner;
-        this.pieceValue = 6;
+        this.pieceValue = 4;
     }
 
     public boolean checkValidMove_movePatternValidCheck(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
 
         // Check that the move pattern requested is valid
-        // Ex: Queen can move in any direction forwards, backwards, left, right, or diagonal an unlimited number of spaces
-        // until it hits a border or another piece. It cannot move like a Knight.
+        // Ex: Rook can move forward, backwards, left, or right any number of spaces until it collides with the board
+        // border or another piece.
 
-
-        // Rook bit
 
         if((originalColumn.equals(newColumn)) ^ (originalRow == newRow)) { // bitwise XOR, must change only one to be true
             if(originalColumn.equals(newColumn)) {
+                System.out.println("Row is changing, piece is moving vertical");
                 // Row is changing, piece is moving vertical
                 if (toArrayIndex(originalRow) < toArrayIndex(newRow)) { // If moving downwards
                     boolean error = false;
@@ -33,7 +32,7 @@ public class Queen extends ChessPiece{
                         }
                     }
                     if (error) {
-                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Rook: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     } else {
                         return true;
@@ -46,7 +45,7 @@ public class Queen extends ChessPiece{
                         }
                     }
                     if (error) {
-                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Rook: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     } else {
                         return true;
@@ -63,7 +62,7 @@ public class Queen extends ChessPiece{
                         }
                     }
                     if (error) {
-                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Rook: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     } else {
                         return true;
@@ -76,65 +75,18 @@ public class Queen extends ChessPiece{
                         }
                     }
                     if (error) {
-                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Rook: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     } else {
                         return true;
                     }
                 }
             }
-        } else if(Math.abs(toArrayIndex(originalRow)-toArrayIndex(newRow)) == Math.abs(toArrayIndex(originalColumn)-toArrayIndex(newColumn))) { // Bishop Bit
-
-            int distance = Math.abs(toArrayIndex(originalRow) - toArrayIndex(newRow));
-
-            if (toArrayIndex(newRow) < toArrayIndex(originalRow) && toArrayIndex(newColumn) > toArrayIndex(originalColumn)) { // going to top right
-                for (int i = 1; i < distance; i++) {
-                    if (boardArray[toArrayIndex(originalRow) - i][toArrayIndex(originalColumn) + i] != null) {
-                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
-                        return false;
-                    }
-                }
-                return true;
-
-            } else if (toArrayIndex(newRow) < toArrayIndex(originalRow) && toArrayIndex(newColumn) < toArrayIndex(originalColumn)) { // going to top left
-                for (int i = 1; i < distance; i++) {
-                    if (boardArray[toArrayIndex(originalRow) - i][toArrayIndex(originalColumn) - i] != null) {
-                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
-                        return false;
-                    }
-                }
-                return true;
-
-            } else if (toArrayIndex(newRow) > toArrayIndex(originalRow) && toArrayIndex(newColumn) > toArrayIndex(originalColumn)) { // going to bottom right
-                for (int i = 1; i < distance; i++) {
-                    if (boardArray[toArrayIndex(originalRow) + i][toArrayIndex(originalColumn) + i] != null) {
-                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
-                        return false;
-                    }
-                }
-                return true;
-
-            } else if (toArrayIndex(newRow) > toArrayIndex(originalRow) && toArrayIndex(newColumn) < toArrayIndex(originalColumn)) { // going to bottom left
-                for (int i = 1; i < distance; i++) {
-                    if (boardArray[toArrayIndex(originalRow) + i][toArrayIndex(originalColumn) - i] != null) {
-                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
-                        return false;
-                    }
-                }
-                return true;
-
-            } else {
-                System.out.println("Queen: Honestly I have no idea how you got here.");
-                return false;
-            }
         } else {
+            System.out.println("Rook: Invalid Move. Cannot move across 2 axis at once.");
             return false;
         }
-
-
-
     }
-
 
     public PieceData aiFindSpacesToAttack(ChessPiece[][] boardArray) {
         // Pawn code, revise for specific moves
@@ -152,5 +104,4 @@ public class Queen extends ChessPiece{
         }
         return null;
     }
-
 }
