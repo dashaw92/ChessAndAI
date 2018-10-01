@@ -4,13 +4,8 @@ import static com.hbh7.Util.*;
 
 public class Queen extends ChessPiece{
 
-    private String pieceType = "Queen";
-    private String owner;
-
-    public Queen(String owner, String position) {
+    public Queen(Team owner, String position) {
         super("Queen", owner, position);
-        this.owner = owner;
-        this.pieceValue = 6;
     }
 
     public boolean checkValidMove_movePatternValidCheck(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
@@ -139,12 +134,12 @@ public class Queen extends ChessPiece{
     public PieceData aiFindSpacesToAttack(ChessPiece[][] boardArray) {
         // Pawn code, revise for specific moves
         if(boardArray[arrayPosRow + 1][arrayPosColumn+1] != null) {
-            if(boardArray[arrayPosRow + 1][arrayPosColumn+1].getOwner().equals("White")) {
+            if(boardArray[arrayPosRow + 1][arrayPosColumn+1].getOwner() == Team.WHITE) {
                 return new PieceData(arrayPosRow+1, arrayPosColumn+1, this.pieceValue);
             }
 
         } else if(boardArray[arrayPosRow + 1][arrayPosColumn-1] != null) {
-            if(boardArray[arrayPosRow + 1][arrayPosColumn-1].getOwner().equals("White")) {
+            if(boardArray[arrayPosRow + 1][arrayPosColumn-1].getOwner() == Team.WHITE) {
                 return new PieceData(arrayPosRow+1, arrayPosColumn-1, this.pieceValue);
             }
         } else {

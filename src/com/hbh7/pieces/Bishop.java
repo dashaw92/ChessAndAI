@@ -4,12 +4,8 @@ import static com.hbh7.Util.*;
 
 public class Bishop extends ChessPiece{
 
-    private String pieceType = "Bishop";
-    private String owner;
-
-    public Bishop(String owner, String position) {
+    public Bishop(Team owner, String position) {
         super("Bishop", owner, position);
-        this.owner = owner;
         this.pieceValue = 3;
     }
 
@@ -60,7 +56,7 @@ public class Bishop extends ChessPiece{
                 return true;
 
             } else {
-                System.out.println("Bishop: Honestly I have no idea how you got here.");
+                System.out.println("Bishop: Honestly I have no idea how you got here. But now that you're here, hi! How's your day going?");
                 return false;
             }
 
@@ -75,12 +71,12 @@ public class Bishop extends ChessPiece{
     public PieceData aiFindSpacesToAttack(ChessPiece[][] boardArray) {
         // Pawn code, revise for specific moves
         if(boardArray[arrayPosRow + 1][arrayPosColumn+1] != null) {
-            if(boardArray[arrayPosRow + 1][arrayPosColumn+1].getOwner().equals("White")) {
+            if(boardArray[arrayPosRow + 1][arrayPosColumn+1].getOwner() == Team.WHITE) {
                 return new PieceData(arrayPosRow+1, arrayPosColumn+1, this.pieceValue);
             }
 
         } else if(boardArray[arrayPosRow + 1][arrayPosColumn-1] != null) {
-            if(boardArray[arrayPosRow + 1][arrayPosColumn-1].getOwner().equals("White")) {
+            if(boardArray[arrayPosRow + 1][arrayPosColumn-1].getOwner() == Team.WHITE) {
                 return new PieceData(arrayPosRow+1, arrayPosColumn-1, this.pieceValue);
             }
         } else {

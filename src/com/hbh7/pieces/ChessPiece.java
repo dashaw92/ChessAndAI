@@ -4,15 +4,15 @@ import static com.hbh7.Util.*;
 
 public abstract class ChessPiece {
 
-    private String position     = "";
-    private String pieceType    = "";
-    private String owner        = "";
-    private String displayName  = "";
+    protected String position     = "";
+    protected String pieceType    = "";
+    protected Team   owner;
+    protected String displayName  = "";
     public int pieceValue = 0;
     public int arrayPosRow      = 0;
     public int arrayPosColumn   = 0;
 
-    public ChessPiece(String pieceType, String owner, String position) {
+    public ChessPiece(String pieceType, Team owner, String position) {
         this.pieceType = pieceType;
         this.owner = owner;
         this.position = position;
@@ -42,7 +42,7 @@ public abstract class ChessPiece {
         }
     }
 
-    public String getOwner() {
+    public Team getOwner() {
         return owner;
     }
 
@@ -79,10 +79,10 @@ public abstract class ChessPiece {
 
     public boolean checkValidMove_colorValidCheck(int playerNum) {
         // Check that the current player has access to move this piece
-        if (owner.equals("White") && playerNum == 1) {
+        if (owner == Team.WHITE && playerNum == 1) {
             // colorValidCheck Passed
             return true;
-        } else if (owner.equals("Black") && playerNum == 2) {
+        } else if (owner == Team.BLACK && playerNum == 2) {
             // colorValidCheck Passed
             return true;
         } else {

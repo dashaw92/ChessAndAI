@@ -1,5 +1,7 @@
 package com.hbh7;
 
+import static com.hbh7.Util.toArrayIndex;
+
 import java.util.Scanner;
 
 import com.hbh7.pieces.Bishop;
@@ -9,8 +11,7 @@ import com.hbh7.pieces.Knight;
 import com.hbh7.pieces.Pawn;
 import com.hbh7.pieces.Queen;
 import com.hbh7.pieces.Rook;
-
-import static com.hbh7.Util.*;
+import com.hbh7.pieces.Team;
 
 public class Main {
 
@@ -27,43 +28,43 @@ public class Main {
         H1 H2 H3 H4 H5 H6 H7 H8
          */
 
-        ChessPiece whiteBishop1 = new Bishop("White", "A3");
-        ChessPiece whiteBishop2 = new Bishop("White", "A6");
-        ChessPiece blackBishop1 = new Bishop("Black", "H3");
-        ChessPiece blackBishop2 = new Bishop("Black", "H6");
+        ChessPiece whiteBishop1 = new Bishop(Team.WHITE, "A3");
+        ChessPiece whiteBishop2 = new Bishop(Team.WHITE, "A6");
+        ChessPiece blackBishop1 = new Bishop(Team.BLACK, "H3");
+        ChessPiece blackBishop2 = new Bishop(Team.BLACK, "H6");
 
-        ChessPiece whiteRook1 = new Rook("White", "A1");
-        ChessPiece whiteRook2 = new Rook("White", "A8");
-        ChessPiece blackRook1 = new Rook("Black", "H1");
-        ChessPiece blackRook2 = new Rook("Black", "H8");
+        ChessPiece whiteRook1 = new Rook(Team.WHITE, "A1");
+        ChessPiece whiteRook2 = new Rook(Team.WHITE, "A8");
+        ChessPiece blackRook1 = new Rook(Team.BLACK, "H1");
+        ChessPiece blackRook2 = new Rook(Team.BLACK, "H8");
 
-        ChessPiece whiteKnight1 = new Knight("White", "A2");
-        ChessPiece whiteKnight2 = new Knight("White", "A7");
-        ChessPiece blackKnight1 = new Knight("Black", "H2");
-        ChessPiece blackKnight2 = new Knight("Black", "H7");
+        ChessPiece whiteKnight1 = new Knight(Team.WHITE, "A2");
+        ChessPiece whiteKnight2 = new Knight(Team.WHITE, "A7");
+        ChessPiece blackKnight1 = new Knight(Team.BLACK, "H2");
+        ChessPiece blackKnight2 = new Knight(Team.BLACK, "H7");
 
-        ChessPiece whiteQueen1 = new Queen("White", "A4");
-        ChessPiece blackQueen1 = new Queen("Black", "H4");
+        ChessPiece whiteQueen1 = new Queen(Team.WHITE, "A4");
+        ChessPiece blackQueen1 = new Queen(Team.BLACK, "H4");
 
-        ChessPiece whiteKing1 = new King("White", "A5");
-        ChessPiece blackKing1 = new King("Black", "H5");
+        ChessPiece whiteKing1 = new King(Team.WHITE, "A5");
+        ChessPiece blackKing1 = new King(Team.BLACK, "H5");
 
-        ChessPiece whitePawn1 = new Pawn("White", "B1");
-        ChessPiece whitePawn2 = new Pawn("White", "B2");
-        ChessPiece whitePawn3 = new Pawn("White", "B3");
-        ChessPiece whitePawn4 = new Pawn("White", "B4");
-        ChessPiece whitePawn5 = new Pawn("White", "B5");
-        ChessPiece whitePawn6 = new Pawn("White", "B6");
-        ChessPiece whitePawn7 = new Pawn("White", "B7");
-        ChessPiece whitePawn8 = new Pawn("White", "B8");
-        ChessPiece blackPawn1 = new Pawn("Black", "G1");
-        ChessPiece blackPawn2 = new Pawn("Black", "G2");
-        ChessPiece blackPawn3 = new Pawn("Black", "G3");
-        ChessPiece blackPawn4 = new Pawn("Black", "G4");
-        ChessPiece blackPawn5 = new Pawn("Black", "G5");
-        ChessPiece blackPawn6 = new Pawn("Black", "G6");
-        ChessPiece blackPawn7 = new Pawn("Black", "G7");
-        ChessPiece blackPawn8 = new Pawn("Black", "G8");
+        ChessPiece whitePawn1 = new Pawn(Team.WHITE, "B1");
+        ChessPiece whitePawn2 = new Pawn(Team.WHITE, "B2");
+        ChessPiece whitePawn3 = new Pawn(Team.WHITE, "B3");
+        ChessPiece whitePawn4 = new Pawn(Team.WHITE, "B4");
+        ChessPiece whitePawn5 = new Pawn(Team.WHITE, "B5");
+        ChessPiece whitePawn6 = new Pawn(Team.WHITE, "B6");
+        ChessPiece whitePawn7 = new Pawn(Team.WHITE, "B7");
+        ChessPiece whitePawn8 = new Pawn(Team.WHITE, "B8");
+        ChessPiece blackPawn1 = new Pawn(Team.BLACK, "G1");
+        ChessPiece blackPawn2 = new Pawn(Team.BLACK, "G2");
+        ChessPiece blackPawn3 = new Pawn(Team.BLACK, "G3");
+        ChessPiece blackPawn4 = new Pawn(Team.BLACK, "G4");
+        ChessPiece blackPawn5 = new Pawn(Team.BLACK, "G5");
+        ChessPiece blackPawn6 = new Pawn(Team.BLACK, "G6");
+        ChessPiece blackPawn7 = new Pawn(Team.BLACK, "G7");
+        ChessPiece blackPawn8 = new Pawn(Team.BLACK, "G8");
 
         int width = 8;
         int height = 8;
@@ -249,11 +250,11 @@ public class Main {
             if((toArrayIndex(newRow) == 0 || toArrayIndex(newRow) == 7) && boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)].getPieceType().equals("Pawn")){
                 System.out.print("Pawn has reached end of board! Please select a new piece: [Queen, Rook, Knight, Bishop] ");
                 String input = scanner.nextLine();
-                String owner;
+                Team owner;
                 if(playerNum == 1)
-                    owner = "White";
+                    owner = Team.WHITE;
                 else
-                    owner = "Black";
+                    owner = Team.BLACK;
                 String space = newRow + newColumn;
                 switch (input.replaceAll("\\s+","").toLowerCase()) {
                     case ("queen"):

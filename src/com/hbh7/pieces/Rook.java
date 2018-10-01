@@ -4,13 +4,8 @@ import static com.hbh7.Util.*;
 
 public class Rook extends ChessPiece{
 
-    private String pieceType = "Rook";
-    private String owner;
-
-    public Rook(String owner, String position) {
+    public Rook(Team owner, String position) {
         super("Rook", owner, position);
-        this.owner = owner;
-        this.pieceValue = 4;
     }
 
     public boolean checkValidMove_movePatternValidCheck(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
@@ -91,12 +86,12 @@ public class Rook extends ChessPiece{
     public PieceData aiFindSpacesToAttack(ChessPiece[][] boardArray) {
         // Pawn code, revise for specific moves
         if(boardArray[arrayPosRow + 1][arrayPosColumn+1] != null) {
-            if(boardArray[arrayPosRow + 1][arrayPosColumn+1].getOwner().equals("White")) {
+            if(boardArray[arrayPosRow + 1][arrayPosColumn+1].getOwner() == Team.WHITE) {
                 return new PieceData(arrayPosRow+1, arrayPosColumn+1, this.pieceValue);
             }
 
         } else if(boardArray[arrayPosRow + 1][arrayPosColumn-1] != null) {
-            if(boardArray[arrayPosRow + 1][arrayPosColumn-1].getOwner().equals("White")) {
+            if(boardArray[arrayPosRow + 1][arrayPosColumn-1].getOwner() == Team.WHITE) {
                 return new PieceData(arrayPosRow+1, arrayPosColumn-1, this.pieceValue);
             }
         } else {
